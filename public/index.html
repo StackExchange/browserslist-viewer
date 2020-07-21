@@ -12,7 +12,7 @@
 </head>
 <body class="theme-system">
     <form id="js-form" class="bg-orange-400 fc-white mb32">
-        <div class="mx-auto w100 wmx12 px64 py48 wmx12 w100">
+        <div class="mx-auto w100 wmx12 px64 sm:pl24 sm:pr24 py48">
             <h1 class="fs-headline1 mb0">Browserslist viewer</h1>
             <p class="fs-subheading">A page to display compatible browsers from a browserslist string.</p>
             <div class="grid gsx gs8">
@@ -26,25 +26,29 @@
         </div>
     </form>
 
-    <div id="js-error-container" class="mx-auto w100 wmx12 px64 wmx12 w100 d-none">
+    <div id="js-error-container" class="mx-auto w100 wmx12 px64 sm:pl24 sm:pr24 wmx12 w100 d-none">
         <aside class="s-notice s-notice__danger s-notice__important js-error-message" role="alert" aria-hidden="false">
             Error
         </aside>
     </div>
 
-    <div id="js-data-container" class="mx-auto w100 wmx12 px64 wmx12 w100">
+    <div id="js-data-container" class="mx-auto w100 wmx12 px64 sm:pl24 sm:pr24 wmx12 w100">
         <div class="ta-center fs-title">
             Global coverage <strong id="js-global-coverage">0.00%</strong>
         </div>
     
-        <div class="grid grid__allcells6 gsx gs64 mt32 fw-wrap">
-            <div class="grid--cell fs-title fw-bold mb24 ta-center">Mobile browsers</div>
-            <div class="grid--cell fs-title fw-bold mb24 ta-center">Desktop browsers</div>
-            <div id="js-mobile-container" class="grid--cell"></div>
-            <div id="js-desktop-container" class="grid--cell"></div>
+        <div class="grid gs48 mt0 fw-wrap">
+            <div class="grid--cell fl-equal">
+                <div class="fs-title fw-bold mb24 ta-center">Mobile browsers</div>
+                <div id="js-mobile-container"></div>
+            </div>
+            <div class="grid--cell fl-equal">
+                <div class="fs-title fw-bold mb24 ta-center">Desktop browsers</div>
+                <div id="js-desktop-container"></div>
+            </div>
         </div>
 
-        <div class="grid gsx gs32 py32">
+        <div class="grid gs32 py32 fw-wrap">
             <div class="grid--cell">Designed for use by <a href="https://stackoverflow.design">Stacks</a></div>
             <div class="grid--cell">Source hosted at <a href="https://github.com/b-kelly/browserslist-viewer">Github</a></div>
             <div class="grid--cell">Logos by <a href="https://github.com/alrra/browser-logos">alrra/browser-logos</a></div>
