@@ -11,41 +11,57 @@
         crossorigin="anonymous" />
 </head>
 <body class="theme-system">
-    <div class="mx-auto w100 wmx12 py24 px16">
-        <form id="js-form">
+    <form id="js-form" class="bg-orange-400 fc-white mb32">
+        <div class="mx-auto w100 wmx12 px64 py48 wmx12 w100">
             <h1 class="fs-headline1 mb0">Browserslist viewer</h1>
             <p class="fs-subheading">A page to display compatible browsers from a browserslist string.</p>
-            <div class="grid">
+            <div class="grid gsx gs8">
                 <input type="text"
                     name="query"
                     placeholder="defaults"
                     value="stacks"
-                    class="s-input s-input__lg grid--cell brr0" />
-                <button type="submit" class="s-btn s-btn__outlined s-btn__lg grid--cell mln1 blr0">Submit</button>
+                    class="s-input s-input__md grid--cell" />
+                <button type="submit" class="s-btn s-btn__outlined s-btn__muted s-btn__md bg-white ws-nowrap grid--cell">Show browsers</button>
             </div>
-        </form>
-    
-        <div class="ta-center fs-body3">
+        </div>
+    </form>
+
+    <div id="js-error-container" class="mx-auto w100 wmx12 px64 wmx12 w100 d-none">
+        <aside class="s-notice s-notice__danger s-notice__important js-error-message" role="alert" aria-hidden="false">
+            Error
+        </aside>
+    </div>
+
+    <div id="js-data-container" class="mx-auto w100 wmx12 px64 wmx12 w100">
+        <div class="ta-center fs-title">
             Global coverage <strong id="js-global-coverage">0.00%</strong>
         </div>
     
-        <div class="grid grid__allcells6 gsx gs16 mt32 fw-wrap">
-            <div class="grid--cell fs-title ta-center">Desktop browsers</div>
-            <div class="grid--cell fs-title ta-center">Mobile browsers</div>
-            <div id="js-desktop-container" class="grid--cell"></div>
+        <div class="grid grid__allcells6 gsx gs64 mt32 fw-wrap">
+            <div class="grid--cell fs-title fw-bold mb24 ta-center">Mobile browsers</div>
+            <div class="grid--cell fs-title fw-bold mb24 ta-center">Desktop browsers</div>
             <div id="js-mobile-container" class="grid--cell"></div>
+            <div id="js-desktop-container" class="grid--cell"></div>
+        </div>
+
+        <div class="grid gsx gs32 py32">
+            <div class="grid--cell">Designed for use by <a href="https://stackoverflow.design">Stacks</a></div>
+            <div class="grid--cell">Source hosted at <a href="https://github.com/b-kelly/browserslist-viewer">Github</a></div>
+            <div class="grid--cell">Logos by <a href="https://github.com/alrra/browser-logos">alrra/browser-logos</a></div>
+            <div class="grid--cell">Data by <a href="https://github.com/ben-eb/caniuse-lite">caniuse-lite</a> <strong class="js-caniuse-version"></strong></div>
+            <div class="grid--cell">Functionality by <a href="https://github.com/browserslist/browserslist">browserslist</a> <strong class="js-browserslist-version"></strong></div>
         </div>
     </div>
 
     <template id="js-entry-template">
-        <div class="grid gs8 gsx mt8">
+        <div class="grid gs8 gsx mt8 ai-center">
             <div class="grid--cell">
-                <img class="js-entry-image" src="//:0" />
+                <div class="js-entry-image h32 w32 browser-image"></div>
             </div>
-            <div class="grid--cell fl1 fs-body3">
+            <div class="grid--cell fl1 fs-title">
                 <span class="js-entry-name">Browser name</span> <span class="js-entry-version">00</span>
             </div>
-            <div class="grid--cell js-entry-coverage fs-body2">00.00%</div>
+            <div class="grid--cell js-entry-coverage fs-body3">00.00%</div>
         </div>
     </template>
 </body>

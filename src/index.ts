@@ -1,9 +1,13 @@
 // @ts-ignore
 import { browserslist as stacksBrowserslist } from "@stackoverflow/stacks/package.json";
 import browserslist from "browserslist";
+// @ts-ignore
+import { version as browserslistVersion } from "browserslist/package.json";
 import type { Agent } from "caniuse-lite";
 // @ts-ignore import just agents because importing the entry doesn't seem to tree shake `features` out...
 import { agents as agentsUntyped } from "caniuse-lite/dist/unpacker/agents";
+// @ts-ignore
+import { version as caniuseVersion } from "caniuse-lite/package.json";
 import "../public/index.css";
 
 // add typings for our manually imported agents collection
@@ -11,6 +15,30 @@ let agents: { [id: string]: Agent } = agentsUntyped;
 
 // caniuse-lite doesn't include "type", so we have to fake it... poorly.
 const mobileBrowserRegex = /android|samsung|ios|browser/i;
+
+// mapping of browser id to it's logo class
+const logoMapping: { [id: string]: string | null } = {
+    "ie": "internet-explorer",
+    "edge": "edge",
+    "edge_legacy": "edge-legacy",
+    "firefox": "firefox",
+    "chrome": "chrome",
+    "safari": "safari",
+    "opera": "opera",
+    "ios_saf": "safari-ios",
+    "op_mini": "opera",
+    "android": "android",
+    "bb": null,
+    "op_mob": "opera",
+    "and_chr": "chrome",
+    "and_ff": "firefox",
+    "ie_mob": "internet-explorer",
+    "and_uc": "uc",
+    "samsung": "samsung",
+    "and_qq": null,
+    "baidu": null,
+    "kaios": null
+};
 
 function dealiasStacks(query: string) {
     if (query !== "stacks") {
@@ -24,7 +52,17 @@ function dealiasStacks(query: string) {
     return stacksBrowserslist.join(",");
 }
 
-function parse(el: HTMLFormElement) {
+function getLogoClass(id: string, version: string) {
+    let browserId = id;
+
+    if (id === "edge" && +version <= 18) {
+        browserId = "edge_legacy";
+    }
+
+    return logoMapping[browserId];
+}
+
+function parse(el: HTMLFormElement): string | null {
     let query = el.query.value;
     const template = document.querySelector<HTMLTemplateElement>("#js-entry-template");
     const desktopContainer = document.querySelector("#js-desktop-container");
@@ -50,9 +88,24 @@ function parse(el: HTMLFormElement) {
         bl = browserslist(query);
     }
     catch(e) {
-        // TODO show the error
+        // go ahead and log that error to the console, why not?
         console.error(e);
-        bl = [];
+
+        const message: string = e?.message;
+
+        // just return the whole thing if we can't get a message out of it
+        if (!message) {
+            return e;
+        }
+
+        // create our own custom error messages
+        // TODO: parsing the error messages themselves is rather fragile...
+        if (message.includes("Unknown browser query")) {
+            const invalidSegment = message.match(/`(.+?)`/)?.[0] || query;
+            return `Unknown browser query ${invalidSegment}. Check your syntax and try again.`;
+        }
+
+        return message;
     }
 
     document.querySelector("#js-global-coverage").textContent =
@@ -70,19 +123,32 @@ function parse(el: HTMLFormElement) {
         else {
             desktopContainer.appendChild(entry);
         }
-    })
+    });
+
+    return null;
 }
 
 function createEntry(id: string, version: string, data: Agent, template: HTMLTemplateElement) {
     const el = template.content.cloneNode(true) as HTMLElement;
 
-    el.querySelector<HTMLImageElement>(".js-entry-image").src = `./images/${id}.png`;
+    el.querySelector(".js-entry-image").classList.add(getLogoClass(id, version));
     el.querySelector(".js-entry-name").textContent = data.browser;
     el.querySelector(".js-entry-version").textContent = version;
     el.querySelector(".js-entry-coverage").textContent =
         data.usage_global[version].toFixed(2) + "%";
 
     return el;
+}
+
+function toggleError(message: string) {
+    let isErrorShown = !!message;
+
+    const errorContainer = document.querySelector("#js-error-container");
+    const dataContainer = document.querySelector("#js-data-container");
+
+    errorContainer.querySelector(".js-error-message").textContent = message || "";
+    errorContainer.classList.toggle("d-none", !isErrorShown)
+    dataContainer.classList.toggle("d-none", isErrorShown)
 }
 
 function init() {
@@ -97,8 +163,13 @@ function init() {
         document.querySelector<HTMLFormElement>("#js-form input[name='query']").value = query;
     }
 
+    // fill in the package versions we're currently using
+    document.querySelector(".js-caniuse-version").textContent = caniuseVersion;
+    document.querySelector(".js-browserslist-version").textContent = browserslistVersion;
+
     // auto-parse when the page is loaded
-    parse(form);
+    const error = parse(form);
+    toggleError(error);
 }
 
 init();
