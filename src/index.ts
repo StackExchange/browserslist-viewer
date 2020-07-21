@@ -14,7 +14,7 @@ import "../public/index.css";
 let agents: { [id: string]: Agent } = agentsUntyped;
 
 // caniuse-lite doesn't include "type", so we have to fake it... poorly.
-const mobileBrowserRegex = /android|samsung|ios|browser/i;
+const mobileBrowserRegex = /^(android|and_|ios_|samsung|baidu|op_|kaios|bb|ie_)/i;
 
 // mapping of browser id to it's logo class
 const logoMapping: { [id: string]: string | null } = {
@@ -117,7 +117,7 @@ function parse(el: HTMLFormElement): string | null {
         const entry = createEntry(id, version, agents[id], template);
 
         // caniuse-lite doesn't include "type", so we have to fake it... poorly.
-        if (mobileBrowserRegex.test(agent.browser)) {
+        if (mobileBrowserRegex.test(id)) {
             mobileContainer.appendChild(entry);
         }
         else {
