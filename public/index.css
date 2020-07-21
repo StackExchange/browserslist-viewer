@@ -4,45 +4,45 @@
 }
 
 .browser-image.internet-explorer {
-    background-image: url("~@browser-logos/internet-explorer_9-11/internet-explorer_9-11.png");
+    background-image: url("~@browser-logos/internet-explorer_9-11/internet-explorer_9-11_32x32.png");
 }
 
 .browser-image.edge {
-    background-image: url("~@browser-logos/edge/edge.png");
+    background-image: url("~@browser-logos/edge/edge_32x32.png");
 }
 
 .browser-image.edge-legacy {
-    background-image: url("~@browser-logos/edge_12-18/edge_12-18.png");
+    background-image: url("~@browser-logos/edge_12-18/edge_12-18_32x32.png");
 }
 
 .browser-image.chrome {
-    background-image: url("~@browser-logos/chrome/chrome.png");
+    background-image: url("~@browser-logos/chrome/chrome_32x32.png");
 }
 
 .browser-image.firefox {
-    background-image: url("~@browser-logos/firefox/firefox.png");
+    background-image: url("~@browser-logos/firefox/firefox_32x32.png");
 }
 
 .browser-image.safari {
-    background-image: url("~@browser-logos/safari/safari.png");
+    background-image: url("~@browser-logos/safari/safari_32x32.png");
 }
 
 .browser-image.safari-ios {
-    background-image: url("~@browser-logos/safari-ios/safari-ios.png");
+    background-image: url("~@browser-logos/safari-ios/safari-ios_32x32.png");
 }
 
 .browser-image.opera {
-    background-image: url("~@browser-logos/opera/opera.png");
+    background-image: url("~@browser-logos/opera/opera_32x32.png");
 }
 
 .browser-image.android {
-    background-image: url("~@browser-logos/android/android.png");
+    background-image: url("~@browser-logos/android/android_32x32.png");
 }
 
 .browser-image.uc {
-    background-image: url("~@browser-logos/uc/uc.png");
+    background-image: url("~@browser-logos/uc/uc_32x32.png");
 }
 
 .browser-image.samsung {
-    background-image: url("~@browser-logos/samsung-internet/samsung-internet.png");
+    background-image: url("~@browser-logos/samsung-internet/samsung-internet_32x32.png");
 }
