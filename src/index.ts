@@ -1,18 +1,47 @@
-import "../public/index.css";
+// @ts-ignore
+import { browserslist as stacksBrowserslist } from "@stackoverflow/stacks/package.json";
 import browserslist from "browserslist";
-import { agents, Agent } from "caniuse-lite";
+import type { Agent } from "caniuse-lite";
+// @ts-ignore import just agents because importing the entry doesn't seem to tree shake `features` out...
+import { agents as agentsUntyped } from "caniuse-lite/dist/unpacker/agents";
+import "../public/index.css";
+
+// add typings for our manually imported agents collection
+let agents: { [id: string]: Agent } = agentsUntyped;
 
 // caniuse-lite doesn't include "type", so we have to fake it... poorly.
 const mobileBrowserRegex = /android|samsung|ios|browser/i;
 
+function dealiasStacks(query: string) {
+    if (query !== "stacks") {
+        return query;
+    }
+
+    if (!stacksBrowserslist || !stacksBrowserslist.length || !(stacksBrowserslist instanceof Array)) {
+        return "defaults";
+    }
+
+    return stacksBrowserslist.join(",");
+}
+
 function parse(el: HTMLFormElement) {
-    const query = el.query.value;
+    let query = el.query.value;
     const template = document.querySelector<HTMLTemplateElement>("#js-entry-template");
     const desktopContainer = document.querySelector("#js-desktop-container");
     const mobileContainer = document.querySelector("#js-mobile-container");
 
     desktopContainer.innerHTML = "";
     mobileContainer.innerHTML = "";
+
+    if (!query) {
+        query = "stacks";
+    }
+
+    // trim all `"` (double quotes) and extra space chars in case the user pasted from their package.json
+    query = query.replace(/["]/g, "").replace(/\s+/g, " ");
+
+    // we support a special "stacks" keyword in addition to "defaults"
+    query = dealiasStacks(query);
     
     // parse the query string
     let bl: string[];
@@ -20,8 +49,10 @@ function parse(el: HTMLFormElement) {
     try {
         bl = browserslist(query);
     }
-    catch {
+    catch(e) {
         // TODO show the error
+        console.error(e);
+        bl = [];
     }
 
     document.querySelector("#js-global-coverage").textContent =

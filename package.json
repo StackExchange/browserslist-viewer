@@ -1,5 +1,6 @@
 {
   "name": "browserslist-viewer",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +9,10 @@
     "build": "webpack -p"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
   "devDependencies": {
     "@types/browserslist": "^4.8.0",
     "@types/caniuse-lite": "^1.0.0",
@@ -23,6 +27,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@stackoverflow/stacks": "^0.53.0",
     "browserslist": "^4.13.0",
     "caniuse-lite": "^1.0.30001103"
   }
