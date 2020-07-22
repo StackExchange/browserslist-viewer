@@ -16,7 +16,7 @@ let agents: { [id: string]: Agent } = agentsUntyped;
 // caniuse-lite doesn't include "type", so we have to fake it... poorly.
 const mobileBrowserRegex = /^(android|and_|ios_|samsung|baidu|op_|kaios|bb|ie_)/i;
 
-// mapping of browser id to it's logo class
+// mapping of browser id to its logo class
 const logoMapping: { [id: string]: string | null } = {
     "ie": "internet-explorer",
     "edge": "edge",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +10,9 @@
         integrity="sha384-PLE3CXqkXRoZKGEytVygftFzX9q2rVTjxMlhbUhJiqy4TwAgqJamf9lldnjU7gy0"
         crossorigin="anonymous" />
 </head>
-<body class="theme-system">
-    <form id="js-form" class="bg-orange-400 fc-white mb32">
-        <div class="mx-auto w100 wmx12 px64 sm:pl24 sm:pr24 py48">
+<body class="theme-system grid fd-column">
+    <form id="js-form" class="grid--cell bg-orange-400 fc-white mb32">
+        <div class="mx-auto w100 wmx10 px64 sm:pl24 sm:pr24 py48">
             <h1 class="fs-headline1 mb0">Browserslist viewer</h1>
             <p class="fs-subheading">A page to display compatible browsers from a browserslist string.</p>
             <div class="grid gsx gs8">
@@ -20,40 +20,42 @@
                     name="query"
                     placeholder="defaults"
                     value="stacks"
-                    class="s-input s-input__md grid--cell" />
-                <button type="submit" class="s-btn s-btn__outlined s-btn__muted s-btn__md bg-white ws-nowrap grid--cell">Show browsers</button>
+                    class="s-input s-input__md grid--cell bc-orange-3" />
+                <button type="submit" class="s-btn s-btn__outlined s-btn__muted s-btn__md fc-white bg-orange-800 baw0 ws-nowrap grid--cell">Show browsers</button>
             </div>
         </div>
     </form>
 
-    <div id="js-error-container" class="mx-auto w100 wmx12 px64 sm:pl24 sm:pr24 wmx12 w100 d-none">
+    <div id="js-error-container" class="grid--cell mx-auto w100 wmx10 px64 sm:pl24 sm:pr24 d-none">
         <aside class="s-notice s-notice__danger s-notice__important js-error-message" role="alert" aria-hidden="false">
             Error
         </aside>
     </div>
 
-    <div id="js-data-container" class="mx-auto w100 wmx12 px64 sm:pl24 sm:pr24 wmx12 w100">
-        <div class="ta-center fs-title">
+    <div id="js-data-container" class="grid fd-column mx-auto w100 wmx10 px64 sm:pl32 sm:pr32">
+        <div class="ta-center fs-title mb32">
             Global coverage <strong id="js-global-coverage">0.00%</strong>
         </div>
-    
-        <div class="grid gs48 mt0 fw-wrap">
-            <div class="grid--cell fl-equal">
-                <div class="fs-title fw-bold mb24 ta-center">Mobile browsers</div>
-                <div id="js-mobile-container"></div>
-            </div>
-            <div class="grid--cell fl-equal">
+
+        <div class="grid gs64 jc-center md:ai-center md:fd-column">
+            <div class="grid--cell fl-equal w100 wmx4">
                 <div class="fs-title fw-bold mb24 ta-center">Desktop browsers</div>
                 <div id="js-desktop-container"></div>
             </div>
+            <div class="grid--cell fl-equal w100 wmx4">
+                <div class="fs-title fw-bold mb24 ta-center">Mobile browsers</div>
+                <div id="js-mobile-container"></div>
+            </div>
         </div>
+    </div>
 
-        <div class="grid gs32 py32 fw-wrap">
-            <div class="grid--cell">Designed for use by <a href="https://stackoverflow.design">Stacks</a></div>
-            <div class="grid--cell">Source hosted at <a href="https://github.com/b-kelly/browserslist-viewer">Github</a></div>
-            <div class="grid--cell">Logos by <a href="https://github.com/alrra/browser-logos">alrra/browser-logos</a></div>
-            <div class="grid--cell">Data by <a href="https://github.com/ben-eb/caniuse-lite">caniuse-lite</a> <strong class="js-caniuse-version"></strong></div>
-            <div class="grid--cell">Functionality by <a href="https://github.com/browserslist/browserslist">browserslist</a> <strong class="js-browserslist-version"></strong></div>
+    <div class="grid--cell mt-auto mx-auto w100 wmx10 px64 sm:pl32 sm:pr32">
+        <div class="pt64 pb24 fc-light s-anchors s-anchors__grayscale">
+            <div class="d-inline-block mr12 mb12">Designed for use by <a href="https://stackoverflow.design">Stacks</a></div>
+            <div class="d-inline-block mr12 mb12">Source hosted at <a href="https://github.com/b-kelly/browserslist-viewer">GitHub</a></div>
+            <div class="d-inline-block mr12 mb12">Logos by <a href="https://github.com/alrra/browser-logos">alrra/browser-logos</a></div>
+            <div class="d-inline-block mr12 mb12">Data by <a href="https://github.com/ben-eb/caniuse-lite">caniuse-lite</a> <strong class="js-caniuse-version"></strong></div>
+            <div class="d-inline-block mr12 mb12">Functionality by <a href="https://github.com/browserslist/browserslist">browserslist</a> <strong class="js-browserslist-version"></strong></div>
         </div>
     </div>
 
