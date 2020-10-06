@@ -42,6 +42,6 @@
     "@browser-logos/uc": "^1.0.7",
     "@stackoverflow/stacks": "^0.56.0",
     "browserslist": "^4.14.5",
-    "caniuse-lite": "^1.0.30001137"
+    "caniuse-lite": "^1.0.30001143"
   }
 }
