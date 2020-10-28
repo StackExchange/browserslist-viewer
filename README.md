@@ -1,6 +1,6 @@
 # browserslist-viewer
 
-https://b-kelly.github.io/browserslist-viewer/
+https://stackexchange.github.io/browserslist-viewer/
 
 ## Development
 
