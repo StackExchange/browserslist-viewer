@@ -1,6 +1,6 @@
 # browserslist-viewer
 
-https://stackexchange.github.io/browserslist-viewer/
+https://browsers.stackoverflow.design/
 
 ## Development
 
