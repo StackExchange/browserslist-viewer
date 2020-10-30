@@ -1,7 +1,13 @@
 const path = require('path');
+const glob = require('glob');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+
+const PATHS = {
+  src: path.join(__dirname, 'public')
+}
 
 module.exports = (_, options) => {
     const isProd = options.mode === 'production';
@@ -44,6 +50,9 @@ module.exports = (_, options) => {
         },
         plugins: [
             new MiniCssExtractPlugin(),
+            new PurgecssPlugin({
+                paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+            }),
             new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
             new HtmlWebpackPlugin({ template: './public/index.html' })
         ]
