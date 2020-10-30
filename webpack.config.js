@@ -3,6 +3,7 @@ const glob = require('glob');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 
 const PATHS = {
@@ -36,6 +37,12 @@ module.exports = (_, options) => {
                         }
                     }],
                 }
+            ],
+        },
+        optimization: {
+            minimize: true,
+            minimizer: [
+                new CssMinimizerPlugin(),
             ],
         },
         resolve: {
