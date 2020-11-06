@@ -108,9 +108,6 @@ function parse(el: HTMLFormElement): string | null {
         return message;
     }
 
-    document.querySelector("#js-global-coverage").textContent =
-        browserslist.coverage(bl).toFixed(2) + "%";
-
     bl.forEach(b => {
         const [id, version] = b.split(" ");
         const agent = agents[id];
@@ -134,8 +131,6 @@ function createEntry(id: string, version: string, data: Agent, template: HTMLTem
     el.querySelector(".js-entry-image").classList.add(getLogoClass(id, version));
     el.querySelector(".js-entry-name").textContent = data.browser;
     el.querySelector(".js-entry-version").textContent = version;
-    el.querySelector(".js-entry-coverage").textContent =
-        data.usage_global[version].toFixed(2) + "%";
 
     return el;
 }
