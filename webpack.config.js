@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
+const webpack = require("webpack");
 
 const PATHS = {
   src: path.join(__dirname, 'public')
@@ -67,7 +68,10 @@ module.exports = (_, options) => {
                 }
             }),
             new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-            new HtmlWebpackPlugin({ template: './public/index.html' })
+            new HtmlWebpackPlugin({ template: './public/index.html' }),
+            new webpack.EnvironmentPlugin({
+                BROWSERSLIST_DISABLE_CACHE: false
+            }),
         ]
     };
 };

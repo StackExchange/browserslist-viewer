@@ -1,14 +1,13 @@
-// @ts-ignore
-import { browserslist as stacksBrowserslist } from "@stackoverflow/stacks/package.json";
+import stacksPackage from "@stackoverflow/stacks/package.json";
 import browserslist from "browserslist";
-// @ts-ignore
-import { version as browserslistVersion } from "browserslist/package.json";
+import browserslistPackage from "browserslist/package.json";
 import type { Agent } from "caniuse-lite";
 // @ts-ignore import just agents because importing the entry doesn't seem to tree shake `features` out...
 import { agents as agentsUntyped } from "caniuse-lite/dist/unpacker/agents";
-// @ts-ignore
-import { version as caniuseVersion } from "caniuse-lite/package.json";
+import caniusePackage from "caniuse-lite/package.json";
 import "../public/index.css";
+
+let stacksBrowserslist = stacksPackage.browserslist;
 
 // add typings for our manually imported agents collection
 let agents: { [id: string]: Agent } = agentsUntyped;
@@ -80,7 +79,7 @@ function parse(el: HTMLFormElement): string | null {
 
     // we support a special "stacks" keyword in addition to "defaults"
     query = dealiasStacks(query);
-    
+
     // parse the query string
     let bl: string[];
 
@@ -159,8 +158,8 @@ function init() {
     }
 
     // fill in the package versions we're currently using
-    document.querySelector(".js-caniuse-version").textContent = caniuseVersion;
-    document.querySelector(".js-browserslist-version").textContent = browserslistVersion;
+    document.querySelector(".js-caniuse-version").textContent = caniusePackage.version;
+    document.querySelector(".js-browserslist-version").textContent = browserslistPackage.version;
 
     // auto-parse when the page is loaded
     const error = parse(form);

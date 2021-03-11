@@ -5,6 +5,8 @@
       "noImplicitAny": true,
       "module": "es6",
       "target": "es5",
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true
     }
   }
