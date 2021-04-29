@@ -42,8 +42,8 @@
     "@browser-logos/safari-ios": "^1.0.15",
     "@browser-logos/samsung-internet": "^4.0.6",
     "@browser-logos/uc": "^1.0.7",
-    "@stackoverflow/stacks": "^0.62.0",
-    "browserslist": "^4.16.3",
-    "caniuse-lite": "^1.0.30001198"
+    "@stackoverflow/stacks": "^0.63.2",
+    "browserslist": "^4.16.5",
+    "caniuse-lite": "^1.0.30001219"
   }
 }
