@@ -10,10 +10,6 @@
     background-image: url("~@browser-logos/edge/edge_32x32.png");
 }
 
-.browser-image.edge-legacy {
-    background-image: url("~@browser-logos/edge_12-18/edge_12-18_32x32.png");
-}
-
 .browser-image.chrome {
     background-image: url("~@browser-logos/chrome/chrome_32x32.png");
 }
