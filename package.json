@@ -21,13 +21,13 @@
     "css-minimizer-webpack-plugin": "^2.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
-    "mini-css-extract-plugin": "^1.5.1",
+    "mini-css-extract-plugin": "^1.6.0",
     "purgecss-webpack-plugin": "^4.0.3",
-    "ts-loader": "^9.1.1",
+    "ts-loader": "^9.1.2",
     "typescript": "^4.2.4",
     "url-loader": "^4.1.1",
-    "webpack": "^5.36.1",
-    "webpack-cli": "^4.6.0",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
@@ -42,8 +42,8 @@
     "@browser-logos/safari-ios": "^1.0.15",
     "@browser-logos/samsung-internet": "^4.0.6",
     "@browser-logos/uc": "^1.0.7",
-    "@stackoverflow/stacks": "^0.63.2",
-    "browserslist": "^4.16.5",
-    "caniuse-lite": "^1.0.30001219"
+    "@stackoverflow/stacks": "^0.64.0",
+    "browserslist": "^4.16.6",
+    "caniuse-lite": "^1.0.30001228"
   }
 }
