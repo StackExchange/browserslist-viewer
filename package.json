@@ -26,7 +26,7 @@
     "ts-loader": "^9.2.3",
     "typescript": "^4.3.5",
     "url-loader": "^4.1.1",
-    "webpack": "^5.44.0",
+    "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
@@ -43,6 +43,6 @@
     "@browser-logos/uc": "^1.0.7",
     "@stackoverflow/stacks": "^0.67.0",
     "browserslist": "^4.16.6",
-    "caniuse-lite": "^1.0.30001244"
+    "caniuse-lite": "^1.0.30001245"
   }
 }
