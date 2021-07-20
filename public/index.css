@@ -1,4 +1,4 @@
-@import url(~@stackoverflow/stacks/dist/css/stacks.css);
+@import url(@stackoverflow/stacks/dist/css/stacks.css);
 
 /* purgecss start ignore */
 .browser-image {
@@ -7,30 +7,30 @@
 }
 
 .browser-image.edge {
-    background-image: url("~@browser-logos/edge/edge_64x64.png");
+    background-image: url("@browser-logos/edge/edge_64x64.png");
 }
 
 .browser-image.chrome {
-    background-image: url("~@browser-logos/chrome/chrome_64x64.png");
+    background-image: url("@browser-logos/chrome/chrome_64x64.png");
 }
 
 .browser-image.firefox {
-    background-image: url("~@browser-logos/firefox/firefox_64x64.png");
+    background-image: url("@browser-logos/firefox/firefox_64x64.png");
 }
 
 .browser-image.safari {
-    background-image: url("~@browser-logos/safari/safari_64x64.png");
+    background-image: url("@browser-logos/safari/safari_64x64.png");
 }
 
 .browser-image.safari-ios {
-    background-image: url("~@browser-logos/safari-ios/safari-ios_64x64.png");
+    background-image: url("@browser-logos/safari-ios/safari-ios_64x64.png");
 }
 
 .browser-image.opera {
-    background-image: url("~@browser-logos/opera/opera_64x64.png");
+    background-image: url("@browser-logos/opera/opera_64x64.png");
 }
 
 .browser-image.android {
-    background-image: url("~@browser-logos/android/android_64x64.png");
+    background-image: url("@browser-logos/android/android_64x64.png");
 }
 /* purgecss end ignore */
