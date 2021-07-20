@@ -31,12 +31,7 @@ module.exports = (_, options) => {
                 },
                 {
                     test: /\.png$/i,
-                    use: [{
-                        loader: 'url-loader',
-                        options: {
-                            limit: 8192,
-                        }
-                    }],
+                    type: 'asset/inline',
                 }
             ],
         },
