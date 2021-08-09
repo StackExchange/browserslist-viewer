@@ -37,7 +37,7 @@
     "@browser-logos/safari": "^2.0.0",
     "@browser-logos/safari-ios": "^1.0.15",
     "@stackoverflow/stacks": "^0.68.0",
-    "browserslist": "^4.16.6",
+    "browserslist": "^4.16.7",
     "caniuse-lite": "^1.0.30001249"
   }
 }
