@@ -49,7 +49,7 @@ module.exports = (_, options) => {
             path: path.resolve(__dirname, 'dist'),
         },
         devServer: {
-            contentBase: './dist',
+            static: './dist',
         },
         plugins: [
             new MiniCssExtractPlugin(),
