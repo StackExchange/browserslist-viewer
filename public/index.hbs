@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="h100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Overflow browser support</title>
+</head>
+<body class="theme-system d-flex fd-column">
+    <div class="flex--item bg-orange-400 fc-white">
+        <div class="mx-auto w100 wmx6 p64 sm:p24">
+            <a href="https://stackoverflow.com/" class="s-link s-link__inherit d-inline-block mb32">
+                {{{ svg 'LogoGlyphMd' }}}
+            </a>
+            <h1 class="fs-headline2 mb8 mln2 lh-xs">
+                Browser support
+            </h1>
+            <p class="fs-subheading mb0"><a href="https://stackoverflow.design" class="s-link s-link__inherit fs-italic">Stacks</a> supports the last two stable versions of each major browser. If your browser doesn’t appear in this list, it still may work, but with a degraded experience. Also, we don’t test nightly or canary builds either.</p>
+        </div>
+    </div>
+
+    {{#*inline "browserEntry"}}
+        <div class="flex--item">
+            <div class="d-flex gs8 my0 ai-center">
+                <div class="flex--item">
+                    <img class="h32 w32" src="{{ browser.imageUrl }}">
+                </div>
+                <div class="flex--item fl1 fs-subheading">
+                    <span>{{ browser.name }}</span> <span>{{ browser.version }}</span>
+                </div>
+            </div>
+        </div>
+    {{/inline}}
+
+    <div class="d-flex fd-column mx-auto w100 wmx6 p64 sm:p24">
+        <div class="d-flex gs32 fw-wrap">
+            <div class="flex--item fl-equal w100 wmn2">
+                <div class="fs-title fw-bold mb16">Desktop browsers</div>
+                <div class="d-flex fd-column gs8 my0">
+                    {{#each (browsers 'desktop') as |browser|}}
+                        {{> browserEntry browser=browser}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="flex--item fl-equal w100 wmn2">
+                <div class="fs-title fw-bold mb16">Mobile browsers</div>
+                <div class="d-flex fd-column gs8 my0">
+                    {{#each (browsers 'mobile') as |browser|}}
+                        {{> browserEntry browser=browser}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex--item mt-auto mx-auto w100 wmx6 p64 sm:p24">
+        <div class="d-flex gs12 fw-wrap fc-light s-anchors s-anchors__grayscale">
+            <div class="flex--item">Source hosted at <a href="https://github.com/StackExchange/browserslist-viewer">GitHub</a></div>
+            <div class="flex--item">Logos by <a href="https://github.com/alrra/browser-logos">alrra/browser-logos</a></div>
+            <div class="flex--item">Data by <a href="https://github.com/ben-eb/caniuse-lite">caniuse-lite</a> <strong>{{ version 'caniuse' }}</strong></div>
+            <div class="flex--item">Functionality by <a href="https://github.com/browserslist/browserslist">browserslist</a> <strong>{{ version 'browserslist' }}</strong></div>
+        </div>
+    </div>
+</body>
+</html>
