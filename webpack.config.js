@@ -1,15 +1,9 @@
 const path = require("path");
-const glob = require("glob");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
 const webpack = require("webpack");
-
-const PATHS = {
-  src: path.join(__dirname, "public"),
-};
 
 module.exports = (_, options) => {
   const isProd = options.mode === "production";
@@ -60,16 +54,6 @@ module.exports = (_, options) => {
     },
     plugins: [
       new MiniCssExtractPlugin(),
-      // new PurgecssPlugin({
-      //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-      //   defaultExtractor: (content) => {
-      //     // Capture as liberally as possible, including things like `sm:d-none`
-      //     const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
-
-      //     return broadMatches;
-      //   },
-      //   safelist: [/svg-icon/],
-      // }),
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
         template: "./public/index.hbs",
