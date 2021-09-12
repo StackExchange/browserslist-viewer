@@ -8,7 +8,7 @@ import {
   createAutocomplete,
   GetSourcesParams,
 } from "@algolia/autocomplete-core";
-import type { MaybePromise } from "@algolia/autocomplete-shared";
+import { MaybePromise, getItemsCount } from "@algolia/autocomplete-shared";
 
 interface Item extends BaseItem {
   name: string;
@@ -102,12 +102,16 @@ export class Autocomplete<TItem extends Item> {
       },
       shouldPanelOpen: (props) => {
         const shouldPanelOpen = options.shouldPanelOpen?.call(this, props);
-        return (
-          shouldPanelOpen ||
-          props.state.collections
-            .map((c) => c.source as AutocompleteSourceWithTemplates<TItem>)
-            .some((s) => s.templates.noResults)
-        );
+        const hasResults = getItemsCount(props.state) > 0;
+        const hasNoResultsTemplate = props.state.collections
+          .map((c) => c.source as AutocompleteSourceWithTemplates<TItem>)
+          .some((s) => s.templates.noResults);
+
+        const focusedAndShowingResults =
+          this.input === document.activeElement &&
+          (hasResults || hasNoResultsTemplate);
+
+        return shouldPanelOpen || focusedAndShowingResults;
       },
     });
 
@@ -181,13 +185,21 @@ export class Autocomplete<TItem extends Item> {
     const curr = state as Record<string, any>;
     const prev = prevState as Record<string, any>;
 
-    this.log(state);
+    const dOut = (value: unknown) =>
+      value instanceof Array ? value.length : value;
+
     for (var key in curr) {
       if (curr[key] !== prev[key]) {
-        this.log(`Found diff! ${key}: ${prev[key]} -> ${curr[key]}`);
+        this.log(
+          `Found diff! ${key}: ${dOut(prev[key])} -> ${dOut(curr[key])}`
+        );
         out.hasDiff = true;
         out[key] = true;
       }
+    }
+
+    if (out.hasDiff) {
+      this.log("New state", state);
     }
 
     return out;
@@ -234,9 +246,9 @@ export class Autocomplete<TItem extends Item> {
     }
   }
 
-  private log(message: any) {
+  private log(...message: any[]) {
     if (this.debug) {
-      console.log(message);
+      console.log(...message);
     }
   }
 }
