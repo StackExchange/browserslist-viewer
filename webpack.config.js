@@ -44,6 +44,9 @@ module.exports = (_, options) => {
     },
     optimization: {
       minimizer: ["...", new CssMinimizerPlugin()],
+      splitChunks: {
+        minChunks: 2,
+      },
     },
     resolve: {
       extensions: [".tsx", ".ts", ".js"],

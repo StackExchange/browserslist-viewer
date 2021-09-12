@@ -1,7 +1,15 @@
 import "../public/index.css";
-import { Autocomplete } from "./autocomplete";
-import { find, getSupport, isSupported } from "caniuse-api"; // TODO tree shake!
 import stacksPackage from "@stackoverflow/stacks/package.json";
+
+// load the caniuse data on request
+async function loadCaniuseDataAsync() {
+  return await import("caniuse-api");
+}
+
+// aggressively split out dependencies until needed to trim down the initial bundle size
+async function loadAutocompleteAsync() {
+  return (await import("./autocomplete")).Autocomplete;
+}
 
 function getTemplate(selector: string): HTMLElement {
   return document
@@ -9,12 +17,14 @@ function getTemplate(selector: string): HTMLElement {
     .content.cloneNode(true) as HTMLElement;
 }
 
-function executeSearch(query: string): string[] {
+async function executeSearchAsync(query: string): Promise<string[]> {
   if (!query) {
-    return [];
+    return Promise.resolve([]);
   }
 
-  const results = find(query);
+  const caniuse = await loadCaniuseDataAsync();
+
+  const results = caniuse.find(query);
 
   if (typeof results === "string") {
     return [results];
@@ -23,17 +33,19 @@ function executeSearch(query: string): string[] {
   return results;
 }
 
-function featureIsSupported(feature: string) {
+async function featureIsSupportedAsync(feature: string) {
+  const caniuse = await loadCaniuseDataAsync();
+
   const data = {
-    supported: isSupported(feature, stacksPackage.browserslist),
-    browsers: getSupport(feature),
+    supported: caniuse.isSupported(feature, stacksPackage.browserslist),
+    browsers: caniuse.getSupport(feature),
   };
 
   return data;
 }
 
-function updateSupportedStatus(feature: string) {
-  const supportData = featureIsSupported(feature);
+async function updateSupportedStatusAsync(feature: string) {
+  const supportData = await featureIsSupportedAsync(feature);
   const isSupported = supportData.supported;
 
   const messageEl = document.querySelector(".js-indicator-message");
@@ -61,52 +73,70 @@ function updateSupportedStatus(feature: string) {
     });
 }
 
-const root = document.querySelector(".js-autocomplete-container");
-const autocomplete = new Autocomplete({
-  autoDiscover: "js-autocomplete",
-  rootElement: root,
-  placeholder: "css-grid",
-  getSources: () => [
-    {
-      sourceId: "test",
-      getItemInputValue: ({ item, state }) => item.name,
-      getItems: ({ query, state }) => {
-        return executeSearch(query).map((result) => ({
-          name: result,
-        }));
-      },
-      onSelect: () => {
-        autocomplete.triggerSubmit();
-      },
-      templates: {
-        noResults: ({ state }) => {
-          const template = getTemplate("#js-no-results");
-          template.querySelector(".js-feature").textContent = state.query;
-          return template;
-        },
-        section: () => {
-          const sectionEl = document.createElement("ul");
-          sectionEl.className = "s-menu";
-          return sectionEl;
-        },
-        item: ({ item, state }) => {
-          const itemEl = document.createElement("li");
-          itemEl.className = "s-block-link s-block-link__left";
-          if (state.activeItemId || state.activeItemId === 0) {
-            itemEl.classList.toggle(
-              "is-selected",
-              item.__autocomplete_id === state.activeItemId
-            );
-          }
+async function initializeAutocomplete() {
+  if (
+    document.querySelector(".js-autocomplete-input")?.getAttribute("type") ===
+    "search"
+  ) {
+    // already initialized, exit early
+    return;
+  }
 
-          itemEl.textContent = item.name;
+  const Autocomplete = await loadAutocompleteAsync();
 
-          return itemEl;
+  const autocomplete = new Autocomplete({
+    autoDiscover: "js-autocomplete",
+    autoFocus: true,
+    rootElement: root,
+    getSources: () => [
+      {
+        sourceId: "test",
+        getItemInputValue: ({ item, state }) => item.name,
+        getItems: async ({ query, state }) => {
+          return (await executeSearchAsync(query)).map((result) => ({
+            name: result,
+          }));
+        },
+        onSelect: () => {
+          autocomplete.triggerSubmit();
+        },
+        templates: {
+          noResults: ({ state }) => {
+            const template = getTemplate("#js-no-results");
+            template.querySelector(".js-feature").textContent = state.query;
+            return template;
+          },
+          section: () => {
+            const sectionEl = document.createElement("ul");
+            sectionEl.className = "s-menu";
+            return sectionEl;
+          },
+          item: ({ item, state }) => {
+            const itemEl = document.createElement("li");
+            itemEl.className = "s-block-link s-block-link__left";
+            if (state.activeItemId || state.activeItemId === 0) {
+              itemEl.classList.toggle(
+                "is-selected",
+                item.__autocomplete_id === state.activeItemId
+              );
+            }
+
+            itemEl.textContent = item.name;
+
+            return itemEl;
+          },
         },
       },
+    ],
+    onSubmit: (props) => {
+      // we don't care to wait on this to finish, so call it without awaiting
+      void updateSupportedStatusAsync(props.state.query);
     },
-  ],
-  onSubmit: (props) => {
-    updateSupportedStatus(props.state.query);
-  },
-});
+  });
+}
+
+const root = document.querySelector(".js-autocomplete-container");
+root.addEventListener("click", initializeAutocomplete, { once: true });
+root
+  .querySelector("input")
+  .addEventListener("focus", initializeAutocomplete, { once: true });
