@@ -7,7 +7,7 @@
 </head>
 <body class="theme-system d-flex fd-column">
     <div class="flex--item bg-orange-400 fc-white">
-        <div class="mx-auto w100 wmx6 p64 sm:p24">
+        <div class="mx-auto w100 wmx7 p64 sm:p24">
             <a href="https://stackoverflow.com/" class="s-link s-link__inherit d-inline-block mb32">
                 {{{ svg 'LogoGlyphMd' }}}
             </a>
@@ -16,6 +16,22 @@
             </h1>
             <p class="fs-subheading mb0"><a href="https://stackoverflow.design" class="s-link s-link__inherit fs-italic">Stacks</a> supports the last two stable versions of each major browser. If your browser doesn’t appear in this list, it still may work, but with a degraded experience. Also, we don’t test nightly or canary builds either.</p>
         </div>
+    </div>
+
+    <div class="js-autocomplete-container mx-auto w100 wmx7 px64 py24 sm:p24">
+        <form class="js-autocomplete-form d-flex ai-center fw-wrap gsx gs8">
+            <label class="js-autocomplete-label flex--item s-label s-label__lg ws-nowrap">Can I use...</label>
+            <div class="ps-relative flex--item fl1">
+                <input class="js-autocomplete-input s-input s-input__lg s-input__search" />
+                {{{ svg 'Search' 's-input-icon s-input-icon__search' }}}
+
+                <div class="js-autocomplete-panel ps-absolute t100 l0 s-popover mt8">
+                    <div class="s-popover--arrow s-popover--arrow__tl"></div>
+                    <div class="js-autocomplete-list"></div>
+                </div>
+            </div>
+            <p class="flex--item flex--item12 ta-right s-input-message js-indicator-message"></a></p>
+        </form>
     </div>
 
     {{#*inline "browserEntry"}}
@@ -27,11 +43,12 @@
                 <div class="flex--item fl1 fs-subheading">
                     <span>{{ browser.name }}</span> <span>{{ browser.version }}</span>
                 </div>
+                <div class="js-support-indicator" data-browser-id="{{ browser.id }}" data-browser-version="{{ browser.version }}"></div>
             </div>
         </div>
     {{/inline}}
 
-    <div class="d-flex fd-column mx-auto w100 wmx6 p64 sm:p24">
+    <div class="d-flex fd-column mx-auto w100 wmx7 p64 py24 sm:p24">
         <div class="d-flex gs32 fw-wrap">
             <div class="flex--item fl-equal w100 wmn2">
                 <div class="fs-title fw-bold mb16">Desktop browsers</div>
@@ -52,7 +69,7 @@
         </div>
     </div>
 
-    <div class="flex--item mt-auto mx-auto w100 wmx6 p64 sm:p24">
+    <div class="flex--item mt-auto mx-auto w100 wmx7 p64 sm:p24">
         <div class="d-flex gs12 fw-wrap fc-light s-anchors s-anchors__grayscale">
             <div class="flex--item">Source hosted at <a href="https://github.com/StackExchange/browserslist-viewer">GitHub</a></div>
             <div class="flex--item">Logos by <a href="https://github.com/alrra/browser-logos">alrra/browser-logos</a></div>
@@ -60,5 +77,19 @@
             <div class="flex--item">Functionality by <a href="https://github.com/browserslist/browserslist">browserslist</a> <strong>{{ version 'browserslist' }}</strong></div>
         </div>
     </div>
+
+    <template id="js-no-results">
+        <div class="s-empty-state wmx2">
+            {{{spot 'Empty' }}}
+            <p>No results found for <strong class="js-feature">FEATURE</strong>.</p>
+        </div>
+    </template>
+    
+    <template id="js-supported-indicator">
+        {{{ svg 'Checkmark' 'fc-success' }}}
+    </template>
+    <template id="js-unsupported-indicator">
+        {{{ svg 'Clear' 'fc-danger' }}}
+    </template>
 </body>
 </html>

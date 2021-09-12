@@ -57,16 +57,16 @@ module.exports = (_, options) => {
     },
     plugins: [
       new MiniCssExtractPlugin(),
-      new PurgecssPlugin({
-        paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-        defaultExtractor: (content) => {
-          // Capture as liberally as possible, including things like `sm:d-none`
-          const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
+      // new PurgecssPlugin({
+      //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+      //   defaultExtractor: (content) => {
+      //     // Capture as liberally as possible, including things like `sm:d-none`
+      //     const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
 
-          return broadMatches;
-        },
-        safelist: [/svg-icon/],
-      }),
+      //     return broadMatches;
+      //   },
+      //   safelist: [/svg-icon/],
+      // }),
       new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
       new HtmlWebpackPlugin({
         template: "./public/index.hbs",
