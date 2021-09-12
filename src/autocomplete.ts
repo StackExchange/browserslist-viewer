@@ -109,7 +109,7 @@ export class Autocomplete<TItem extends Item> {
 
         const focusedAndShowingResults =
           this.input === document.activeElement &&
-          (hasResults || hasNoResultsTemplate);
+          (hasResults || (props.state.query && hasNoResultsTemplate));
 
         return shouldPanelOpen || focusedAndShowingResults;
       },
