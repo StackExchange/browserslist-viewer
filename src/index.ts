@@ -1,4 +1,4 @@
-import "../public/index.css";
+import "./index.less";
 import stacksPackage from "@stackoverflow/stacks/package.json";
 
 // load the caniuse data on request

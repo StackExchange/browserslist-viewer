@@ -20,6 +20,10 @@ module.exports = (_, options) => {
           exclude: /node_modules/,
         },
         {
+          test: /\.less$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+        },
+        {
           test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
@@ -54,7 +58,7 @@ module.exports = (_, options) => {
     },
     plugins: [
       new MiniCssExtractPlugin(),
-      new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: "./public/index.hbs",
       }),
