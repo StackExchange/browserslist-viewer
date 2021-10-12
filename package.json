@@ -35,7 +35,7 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
-    "@algolia/autocomplete-core": "^1.4.0",
+    "@algolia/autocomplete-core": "^1.4.1",
     "@browser-logos/android": "^1.0.11",
     "@browser-logos/chrome": "^1.0.18",
     "@browser-logos/edge": "^2.0.5",
