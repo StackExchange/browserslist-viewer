@@ -47,6 +47,6 @@
     "@stackoverflow/stacks-icons": "^2.25.0",
     "browserslist": "^4.17.5",
     "caniuse-api": "^3.0.0",
-    "caniuse-lite": "^1.0.30001271"
+    "caniuse-lite": "^1.0.30001274"
   }
 }
