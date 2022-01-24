@@ -44,7 +44,7 @@
     "@browser-logos/safari": "^2.1.0",
     "@browser-logos/safari-ios": "^1.0.15",
     "@stackoverflow/stacks": "^0.73.1",
-    "@stackoverflow/stacks-icons": "^2.25.1",
+    "@stackoverflow/stacks-icons": "^2.26.0",
     "browserslist": "^4.19.1",
     "caniuse-api": "^3.0.0",
     "caniuse-lite": "^1.0.30001300"
