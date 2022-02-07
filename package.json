@@ -21,7 +21,7 @@
     "@types/caniuse-api": "^3.0.2",
     "@types/caniuse-lite": "^1.0.1",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.5.1",
+    "css-loader": "^6.6.0",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.5.0",
