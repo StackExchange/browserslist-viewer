@@ -37,7 +37,7 @@
   "dependencies": {
     "@algolia/autocomplete-core": "^1.5.2",
     "@browser-logos/android": "^1.0.11",
-    "@browser-logos/chrome": "^1.0.18",
+    "@browser-logos/chrome": "^2.0.0",
     "@browser-logos/edge": "^2.0.5",
     "@browser-logos/firefox": "^3.0.9",
     "@browser-logos/opera": "^1.1.11",
