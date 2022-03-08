@@ -21,13 +21,13 @@
     "@types/caniuse-api": "^3.0.2",
     "@types/caniuse-lite": "^1.0.1",
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.6.0",
+    "css-loader": "^6.7.0",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.5.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
-    "mini-css-extract-plugin": "^2.5.3",
+    "mini-css-extract-plugin": "^2.6.0",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.5",
     "webpack": "^5.69.1",
@@ -35,7 +35,7 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "@algolia/autocomplete-core": "^1.5.2",
+    "@algolia/autocomplete-core": "^1.5.3",
     "@browser-logos/android": "^1.0.11",
     "@browser-logos/chrome": "^2.0.0",
     "@browser-logos/edge": "^2.0.5",
@@ -44,9 +44,9 @@
     "@browser-logos/safari": "^2.1.0",
     "@browser-logos/safari-ios": "^1.0.15",
     "@stackoverflow/stacks": "^0.74.0",
-    "@stackoverflow/stacks-icons": "^2.26.0",
+    "@stackoverflow/stacks-icons": "^2.27.0",
     "browserslist": "^4.19.1",
     "caniuse-api": "^3.0.0",
-    "caniuse-lite": "^1.0.30001312"
+    "caniuse-lite": "^1.0.30001313"
   }
 }
