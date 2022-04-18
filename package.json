@@ -43,7 +43,7 @@
     "@browser-logos/opera": "^1.1.11",
     "@browser-logos/safari": "^2.1.0",
     "@browser-logos/safari-ios": "^1.0.15",
-    "@stackoverflow/stacks": "^1.0.0",
+    "@stackoverflow/stacks": "^1.0.1",
     "@stackoverflow/stacks-icons": "^2.27.0",
     "browserslist": "^4.20.2",
     "caniuse-api": "^3.0.0",
