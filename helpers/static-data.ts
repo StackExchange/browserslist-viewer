@@ -1,4 +1,4 @@
-import stacksPackage from "@stackoverflow/stacks/package.json";
+import stacksBrowserslist from "@stackoverflow/browserslist-config";
 import browserslist from "browserslist";
 import browserslistPackage from "browserslist/package.json";
 import { agents } from "caniuse-lite";
@@ -11,8 +11,6 @@ export interface DataEntry {
     imageUrl: string;
     isMobile: boolean;
 }
-
-let stacksBrowserslist = stacksPackage.browserslist;
 
 // caniuse-lite doesn't include "type", so we have to fake it... poorly.
 const mobileBrowserRegex =
@@ -45,7 +43,7 @@ const logoMapping: { [id: string]: string | null } = {
 };
 
 function getBrowserslistData() {
-    let query = stacksBrowserslist;
+    const query = stacksBrowserslist;
     let bl;
 
     try {
