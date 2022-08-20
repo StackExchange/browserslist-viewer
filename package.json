@@ -17,6 +17,7 @@
     "*.less"
   ],
   "devDependencies": {
+    "@stackoverflow/tsconfig": "^1.0.0",
     "@types/browserslist": "^4.8.0",
     "@types/caniuse-api": "^3.0.2",
     "@types/caniuse-lite": "^1.0.1",

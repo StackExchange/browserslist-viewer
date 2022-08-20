@@ -1,5 +1,7 @@
-import data from "./static-data";
+import { data, type DataEntry } from "./static-data";
 
-export default function (type: keyof typeof data.browsersData) {
-  return data.browsersData[type];
+export default function browsers(
+    type: keyof typeof data.browsersData
+): DataEntry[] {
+    return data.browsersData[type];
 }

@@ -1,12 +1,6 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "esnext",
-    "target": "es5",
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true
-  }
+    "extends": "@stackoverflow/tsconfig/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./dist/"
+    }
 }
