@@ -16,6 +16,7 @@ export interface DataEntry {
 const mobileBrowserRegex =
     /^(android|and_|ios_|samsung|baidu|op_|kaios|bb|ie_)/i;
 
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // mapping of browser id to its image data url
 const logoImages: { [id: string]: string } = {
     android: require("@browser-logos/android/android_64x64.png"),
@@ -26,6 +27,7 @@ const logoImages: { [id: string]: string } = {
     safari: require("@browser-logos/safari/safari_64x64.png"),
     safari_ios: require("@browser-logos/safari-ios/safari-ios_64x64.png"),
 };
+/* eslint-enable @typescript-eslint/no-unsafe-assignment */
 
 // mapping of browser id to its corresponding image
 const logoMapping: { [id: string]: string | null } = {
@@ -50,9 +52,11 @@ function getBrowserslistData() {
         bl = browserslist(query);
     } catch (e) {
         // go ahead and log that error to the console, why not?
+        // eslint-disable-next-line no-console
         console.error(e);
 
         // if there's a specific error, throw that
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         throw e?.message || e;
     }
 
