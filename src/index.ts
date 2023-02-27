@@ -1,4 +1,4 @@
-import "./index.less";
+import "@stackoverflow/stacks/dist/css/stacks.min.css";
 import stacksPackage from "@stackoverflow/stacks/package.json";
 
 // load the caniuse data on request
