@@ -45,7 +45,7 @@
         "webpack-dev-server": "^4.11.1"
     },
     "dependencies": {
-        "@algolia/autocomplete-core": "^1.8.2",
+        "@algolia/autocomplete-core": "^1.8.3",
         "@browser-logos/android": "^1.0.11",
         "@browser-logos/chrome": "^2.0.0",
         "@browser-logos/edge": "^2.0.5",
@@ -57,6 +57,6 @@
         "@stackoverflow/stacks-icons": "^5.3.1",
         "browserslist": "^4.21.5",
         "caniuse-api": "^3.0.0",
-        "caniuse-lite": "^1.0.30001458"
+        "caniuse-lite": "^1.0.30001460"
     }
 }
