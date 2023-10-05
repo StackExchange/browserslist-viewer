@@ -247,7 +247,7 @@ export class Autocomplete<TItem extends Item> {
                     state,
                 }) as Element) || document.createElement("ul");
 
-            this.attachProps(section, this._autocomplete.getListProps({}));
+            this.attachProps(section, this._autocomplete.getListProps({ source: collection.source }));
 
             const itemTemplate =
                 templates.item || (() => document.createElement("li"));
