@@ -1,0 +1,28 @@
+# upgrade caniuse-lite db automatically when a new version is released
+# merging the dependabot PR automatically will trigger a deployment for 
+# browsers.stackoverflow.design keeping the browsers versions we support
+# always up to date
+name: Auto Upgrade caniuse-lite
+
+on: pull_request
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-upgrade-caniuse-lite:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Fetch dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Auto Merge Dependabot PRs for caniuse-lite
+        if: ${{contains(steps.metadata.outputs.dependency-names, 'caniuse-lite')}}
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
