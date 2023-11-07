@@ -26,7 +26,7 @@
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
         "@types/browserslist": "^4.8.0",
-        "@types/caniuse-api": "^3.0.4",
+        "@types/caniuse-api": "^3.0.5",
         "@types/caniuse-lite": "^1.0.4",
         "clean-webpack-plugin": "^4.0.0",
         "css-loader": "^6.8.1",
