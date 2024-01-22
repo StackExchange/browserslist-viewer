@@ -29,7 +29,15 @@ module.exports = (_, options) => {
                 },
                 {
                     test: /\.css$/i,
-                    use: [MiniCssExtractPlugin.loader, "css-loader"],
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: "css-loader",
+                            options: {
+                                url: false,
+                            },
+                        }
+                    ],
                 },
                 {
                     test: /\.png$/i,
