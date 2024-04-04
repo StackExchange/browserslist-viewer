@@ -29,7 +29,7 @@
         "@types/caniuse-api": "^3.0.6",
         "@types/caniuse-lite": "^1.0.5",
         "clean-webpack-plugin": "^4.0.0",
-        "css-loader": "^6.11.0",
+        "css-loader": "^7.0.0",
         "css-minimizer-webpack-plugin": "^6.0.0",
         "eslint": "^8.57.0",
         "handlebars-loader": "^1.7.3",
