@@ -25,7 +25,7 @@
         "@stackoverflow/eslint-config": "^1.0.0",
         "@stackoverflow/prettier-config": "^1.0.0",
         "@stackoverflow/tsconfig": "^1.0.0",
-        "@types/browserslist": "^4.8.0",
+        "@types/browserslist": "^4.15.4",
         "@types/caniuse-api": "^3.0.6",
         "@types/caniuse-lite": "^1.0.5",
         "clean-webpack-plugin": "^4.0.0",
