@@ -42,7 +42,7 @@
         "typescript": "^5.8.3",
         "webpack": "^5.99.9",
         "webpack-cli": "^5.1.4",
-        "webpack-dev-server": "^5.2.1"
+        "webpack-dev-server": "^5.2.2"
     },
     "dependencies": {
         "@algolia/autocomplete-core": "^1.19.2",
