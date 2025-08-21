@@ -57,7 +57,7 @@
         "@stackoverflow/stacks-icons": "^6.6.1",
         "browserslist": "^4.25.3",
         "caniuse-api": "^3.0.0",
-        "caniuse-lite": "^1.0.30001735"
+        "caniuse-lite": "^1.0.30001736"
     },
     "overrides": {
         "browserslist": {
