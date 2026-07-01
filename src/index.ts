@@ -77,15 +77,18 @@ async function updateSupportedStatusAsync(feature: string) {
         });
 }
 
+// Guards against re-entrant initialization. A single click focuses the input
+// *and* bubbles a click to the container, firing both listeners below; the
+// previous DOM-attribute check was set asynchronously (after the dynamic
+// import resolved), so both calls slipped through and created two instances.
+let autocompleteInitialized = false;
+
 async function initializeAutocomplete(): Promise<void> {
-    if (
-        document
-            .querySelector(".js-autocomplete-input")
-            ?.getAttribute("type") === "search"
-    ) {
-        // already initialized, exit early
+    if (autocompleteInitialized) {
+        // already initializing or initialized, exit early
         return;
     }
+    autocompleteInitialized = true;
 
     const Autocomplete = await loadAutocompleteAsync();
 
