@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Fetch dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1
+        uses: dependabot/fetch-metadata@v2
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Auto Merge Dependabot PRs for caniuse-lite
